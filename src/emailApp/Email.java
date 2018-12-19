@@ -18,7 +18,17 @@ public class Email {
 
     //Ask of department
 
+
     //Generate random password
+    private String randomPassword(int length){
+        String symbolsAvaiable = "abcdefghijklmnopqrstoxyz0123456789!@#$%";
+        char [] password  = new char[length];
+        for (int i = 0; i <length ; i++) {
+            int rand = (int)(Math.random()*symbolsAvaiable.length());
+            password[i] = symbolsAvaiable.charAt(rand);
+        }
+        return new String(password);
+    }
 
     //Set capacity of EmailBox
 
