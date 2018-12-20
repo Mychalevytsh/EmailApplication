@@ -7,7 +7,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private String gradeYear;
-    private String courses;
+    private String courses = "";
     private int tuitionBalance;
     private String studentId;
     private static int costOfCourse = 600;
@@ -45,7 +45,6 @@ public class Student {
                 tuitionBalance += costOfCourse;
 
             }else {
-                System.out.println("BREAK");
                 break;
             }
 
@@ -60,21 +59,25 @@ public class Student {
     }
 
     //Pay tuition
-    public void payTuition(int payment){
+    public void payTuition(){
+        System.out.println("Enter how to pay");
+        Scanner scan = new Scanner(System.in);
+        int payment = scan.nextInt();
         tuitionBalance = tuitionBalance - payment;
         System.out.println("Thank you for your payment: $"+ payment);
+        viewBalance();
     }
 
     //Show status
-
+    public String showInfo(){
+        return "Name: " + firstName + " " + lastName +
+                "\nID: "+ studentId+
+                "\nGrade Level:"+gradeYear+
+                "\nEnroll:"+ courses +
+                "\nBalance: "+ tuitionBalance;
+    }
     //Setters
-    public void setFirstName( String firstName ) {
-        this.firstName = firstName;
-    }
 
-    public void setLastName( String lastName ) {
-        this.lastName = lastName;
-    }
 
 
 
@@ -87,10 +90,10 @@ public class Student {
         return lastName;
     }
 
-    @Override
-    public String toString() {
-        String s = this.studentId +"\n"+ this.firstName +"\n"+ this.lastName +"\n";
-        this.enroll();
-        return s;
-    }
+//    @Override
+//    public String toString() {
+//        String s = this.studentId +"\n"+ this.firstName +"\n"+ this.lastName +"\n";
+//
+//        return s;
+//    }
 }
