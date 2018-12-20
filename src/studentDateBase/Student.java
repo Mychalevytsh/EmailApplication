@@ -7,7 +7,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private String gradeYear;
-    private String courses = null;
+    private String courses;
     private int tuitionBalance;
     private String studentId;
     private static int costOfCourse = 600;
@@ -36,19 +36,34 @@ public class Student {
     //Enroll in courses
     public void enroll(){
         //Get inside loop while user hits 'Q'
-        System.out.println("Enter course to enroll('Q' to quit)");
-        Scanner scanner = new Scanner(System.in);
-        String course = scanner.nextLine();
-        if (!course.equalsIgnoreCase("Q")) {
-            courses = courses + "\n"+course;
-            tuitionBalance += costOfCourse;
+        do {
+            System.out.println("Enter course to enroll('Q' to quit)");
+            Scanner scanner = new Scanner(System.in);
+            String course = scanner.nextLine();
+            if (!course.equals("Q")) {
+                courses = courses + "\n" + course;
+                tuitionBalance += costOfCourse;
+
+            }else {
+                System.out.println("BREAK");
+                break;
+            }
+
         }
-        System.out.println("ENLOLLED IN"+ courses+"\nTUITION BALANCE:"+tuitionBalance);
+            while (1 != 0);
+        System.out.println("ENROLLED IN "+ courses+"\nTUITION BALANCE:"+tuitionBalance);
     }
 
     //View balance
+    public void viewBalance(){
+        System.out.println("Your balance: $"+tuitionBalance);
+    }
 
     //Pay tuition
+    public void payTuition(int payment){
+        tuitionBalance = tuitionBalance - payment;
+        System.out.println("Thank you for your payment: $"+ payment);
+    }
 
     //Show status
 
@@ -72,5 +87,10 @@ public class Student {
         return lastName;
     }
 
-
+    @Override
+    public String toString() {
+        String s = this.studentId +"\n"+ this.firstName +"\n"+ this.lastName +"\n";
+        this.enroll();
+        return s;
+    }
 }
